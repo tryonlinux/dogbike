@@ -12,6 +12,7 @@
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -23,6 +24,8 @@ body {
   background: radial-gradient(circle at top, #ffffff 0%, #d7f0ff 40%, #b1e0ff 100%);
   color: var(--ink);
   font-family: "Fira Sans", "Trebuchet MS", sans-serif;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .frame {
@@ -72,6 +75,8 @@ canvas {
   background: linear-gradient(180deg, var(--sky) 0%, #bfe6ff 50%, var(--grass) 100%);
   display: block;
   touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .help {
@@ -91,7 +96,7 @@ canvas {
 .touch-controls {
   position: absolute;
   right: 18px;
-  bottom: calc(64px + env(safe-area-inset-bottom, 0px));
+  bottom: calc(80px + env(safe-area-inset-bottom, 0px));
   display: none;
   grid-template-columns: repeat(3, 34px);
   grid-template-rows: repeat(3, 34px);
@@ -107,7 +112,7 @@ canvas {
 .touch-actions {
   position: absolute;
   right: 18px;
-  bottom: calc(186px + env(safe-area-inset-bottom, 0px));
+  bottom: calc(202px + env(safe-area-inset-bottom, 0px));
   display: none;
   flex-direction: column;
   gap: 8px;
@@ -128,6 +133,8 @@ canvas {
   font-weight: 800;
   font-size: 0.85rem;
   box-shadow: 0 10px 20px var(--shadow);
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .touch-controls .pad {
@@ -139,6 +146,8 @@ canvas {
   font-weight: 700;
   box-shadow: 0 10px 20px var(--shadow);
   pointer-events: auto;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .touch-controls .up {

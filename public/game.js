@@ -920,6 +920,16 @@ function getPlayerBounds(scale = 1) {
   };
 }
 
+function isPointerOnPlayer(pointerX, pointerY) {
+  const bounds = getPlayerBounds(1.1);
+  const centerX = bounds.x + bounds.w / 2;
+  const centerY = bounds.y + bounds.h / 2;
+  const radius = Math.max(bounds.w, bounds.h) * 0.55;
+  const dx = pointerX - centerX;
+  const dy = pointerY - centerY;
+  return dx * dx + dy * dy <= radius * radius;
+}
+
 canvas.addEventListener("pointerdown", (event) => {
   if (!document.body.classList.contains("touch")) {
     return;
@@ -927,13 +937,7 @@ canvas.addEventListener("pointerdown", (event) => {
   const rect = canvas.getBoundingClientRect();
   const pointerX = event.clientX - rect.left;
   const pointerY = event.clientY - rect.top;
-  const hitbox = getPlayerBounds(0.9);
-  const onBike =
-    pointerX >= hitbox.x &&
-    pointerX <= hitbox.x + hitbox.w &&
-    pointerY >= hitbox.y &&
-    pointerY <= hitbox.y + hitbox.h;
-  if (!onBike) {
+  if (!isPointerOnPlayer(pointerX, pointerY)) {
     return;
   }
   touchState.active = true;
@@ -952,6 +956,15 @@ canvas.addEventListener("pointermove", (event) => {
 });
 
 canvas.addEventListener("pointerup", (event) => {
+  if (touchState.active) {
+    touchState.active = false;
+    touchState.offsetX = 0;
+    touchState.offsetY = 0;
+    canvas.releasePointerCapture(event.pointerId);
+  }
+});
+
+canvas.addEventListener("pointercancel", (event) => {
   if (touchState.active) {
     touchState.active = false;
     touchState.offsetX = 0;
