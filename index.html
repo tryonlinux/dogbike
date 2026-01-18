@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dogbike Dodge</title>
+    <meta name="description" content="Dogbike Dodge: a simple, fast scrolling browser game where you dodge dogs, cats, and chickens on a bike." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://dogbike.tryonlinux.com/" />
+    <meta property="og:title" content="Dogbike Dodge" />
+    <meta property="og:description" content="A simple, fast scrolling browser game where you dodge dogs, cats, and chickens on a bike." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dogbike.tryonlinux.com/" />
+    <meta property="og:image" content="https://dogbike.tryonlinux.com/favicon.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="frame">
+      <header class="hud">
+        <div class="title">Dogbike Dodge</div>
+        <div class="stats">
+          <span id="score">0</span>
+          <span class="label">meters</span>
+        </div>
+      </header>
+      <canvas id="game" width="420" height="700" aria-label="Dogbike dodge game"></canvas>
+      <div class="help" id="help">
+        Use WASD or arrows to move. Avoid dogs.
+      </div>
+      <div class="touch-controls" id="touchControls" aria-hidden="true">
+        <button class="pad up" data-dir="up" aria-label="Move up">▲</button>
+        <button class="pad left" data-dir="left" aria-label="Move left">◀</button>
+        <button class="pad right" data-dir="right" aria-label="Move right">▶</button>
+        <button class="pad down" data-dir="down" aria-label="Move down">▼</button>
+      </div>
+      <div class="touch-actions" id="touchActions" aria-hidden="true">
+        <button class="action-button" data-action="pause" aria-label="Pause">P</button>
+        <button class="action-button" data-action="reset" aria-label="Reset">R</button>
+      </div>
+      <div class="overlay" id="overlay" aria-live="polite">
+        <div class="panel">
+          <h2 id="overlayTitle">Dogbike Dodge</h2>
+          <p id="overlayBody">
+            Dodge dogs, cats, and chickens. Grab +100 cards for bonus meters, but your bike gets bigger. Press P to pause or drag to move on touch devices.
+          </p>
+          <button id="startButton" type="button">Start Ride</button>
+        </div>
+      </div>
+    </div>
+    <script src="game.js"></script>
+  </body>
+</html>

@@ -1,0 +1,211 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee&family=Fira+Sans:wght@400;700&display=swap");
+
+:root {
+  color-scheme: light;
+  --ink: #1a1c24;
+  --sky: #9fd3ff;
+  --grass: #7bd88f;
+  --track: #f4f1e4;
+  --accent: #ff7a48;
+  --shadow: rgba(26, 28, 36, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #ffffff 0%, #d7f0ff 40%, #b1e0ff 100%);
+  color: var(--ink);
+  font-family: "Fira Sans", "Trebuchet MS", sans-serif;
+}
+
+.frame {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 2;
+}
+
+.title {
+  font-family: "Bungee", "Trebuchet MS", cursive;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  letter-spacing: 1px;
+}
+
+.stats {
+  font-weight: 700;
+  font-size: 1.1rem;
+  background: #ffffff;
+  padding: 6px 14px;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px var(--shadow);
+}
+
+.stats .label {
+  margin-left: 6px;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, var(--sky) 0%, #bfe6ff 50%, var(--grass) 100%);
+  display: block;
+}
+
+.help {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  text-align: center;
+  font-size: 0.95rem;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 14px;
+  box-shadow: 0 12px 24px var(--shadow);
+  z-index: 2;
+}
+
+.touch-controls {
+  position: absolute;
+  right: 18px;
+  bottom: 24px;
+  display: none;
+  grid-template-columns: repeat(3, 34px);
+  grid-template-rows: repeat(3, 34px);
+  gap: 6px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.touch .touch-controls {
+  display: grid;
+}
+
+.touch-actions {
+  position: absolute;
+  right: 18px;
+  bottom: 146px;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 2;
+}
+
+.touch .touch-actions {
+  display: flex;
+}
+
+.action-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.92);
+  color: #1a1c24;
+  font-weight: 800;
+  font-size: 0.85rem;
+  box-shadow: 0 10px 20px var(--shadow);
+}
+
+.touch-controls .pad {
+  border: none;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1a1c24;
+  font-size: 1.2rem;
+  font-weight: 700;
+  box-shadow: 0 10px 20px var(--shadow);
+  pointer-events: auto;
+}
+
+.touch-controls .up {
+  grid-column: 2;
+}
+
+.touch-controls .left {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.touch-controls .right {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.touch-controls .down {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(26, 28, 36, 0.7);
+  z-index: 3;
+}
+
+.overlay[hidden] {
+  display: none;
+}
+
+.panel {
+  width: min(86vw, 420px);
+  background: #fff4d1;
+  border-radius: 18px;
+  padding: 20px 22px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(26, 28, 36, 0.35);
+}
+
+.panel h2 {
+  margin: 0 0 10px;
+  font-family: "Bungee", "Trebuchet MS", cursive;
+  font-size: 1.6rem;
+}
+
+.panel p {
+  margin: 0 0 14px;
+  line-height: 1.4;
+}
+
+.panel button {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  background: #7c4dff;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 12px 22px rgba(124, 77, 255, 0.35);
+}
+
+.panel button:hover {
+  background: #6a3cff;
+}
+
+@media (max-width: 520px) {
+  .title {
+    font-size: 1.2rem;
+  }
+}
