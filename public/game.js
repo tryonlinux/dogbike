@@ -507,8 +507,8 @@ function update() {
   }
 
   if (touchState.active) {
-    player.x += (touchState.x - player.x) * 0.2;
-    player.y += (touchState.y - player.y) * 0.2;
+    player.x = touchState.x;
+    player.y = touchState.y;
   } else {
     if (state.keys.left) {
       player.x -= player.speed;
