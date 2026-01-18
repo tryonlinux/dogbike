@@ -2,12 +2,6 @@
   "name": "dogbike",
   "compatibility_date": "2026-01-18",
   "assets": {
-    "directory": "./",
-    "exclude": [
-      ".git/**",
-      ".wrangler/**",
-      "node_modules/**",
-      "*.log"
-    ]
+    "directory": "./public"
   }
 }
