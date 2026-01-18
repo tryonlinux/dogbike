@@ -921,10 +921,10 @@ function getPlayerBounds(scale = 1) {
 }
 
 function isPointerOnPlayer(pointerX, pointerY) {
-  const bounds = getPlayerBounds(1.1);
+  const bounds = getPlayerBounds(1.35);
   const centerX = bounds.x + bounds.w / 2;
   const centerY = bounds.y + bounds.h / 2;
-  const radius = Math.max(bounds.w, bounds.h) * 0.55;
+  const radius = Math.max(bounds.w, bounds.h) * 0.7;
   const dx = pointerX - centerX;
   const dy = pointerY - centerY;
   return dx * dx + dy * dy <= radius * radius;
