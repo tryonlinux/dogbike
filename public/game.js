@@ -956,19 +956,33 @@ canvas.addEventListener("pointermove", (event) => {
 });
 
 canvas.addEventListener("pointerup", (event) => {
-  if (touchState.active) {
-    touchState.active = false;
-    touchState.offsetX = 0;
-    touchState.offsetY = 0;
-    canvas.releasePointerCapture(event.pointerId);
+  if (!touchState.active) {
+    return;
   }
+  touchState.active = false;
+  touchState.offsetX = 0;
+  touchState.offsetY = 0;
+  canvas.releasePointerCapture(event.pointerId);
 });
 
 canvas.addEventListener("pointercancel", (event) => {
-  if (touchState.active) {
-    touchState.active = false;
-    touchState.offsetX = 0;
-    touchState.offsetY = 0;
+  if (!touchState.active) {
+    return;
+  }
+  touchState.active = false;
+  touchState.offsetX = 0;
+  touchState.offsetY = 0;
+  canvas.releasePointerCapture(event.pointerId);
+});
+
+window.addEventListener("pointerup", (event) => {
+  if (!touchState.active) {
+    return;
+  }
+  touchState.active = false;
+  touchState.offsetX = 0;
+  touchState.offsetY = 0;
+  if (canvas.hasPointerCapture(event.pointerId)) {
     canvas.releasePointerCapture(event.pointerId);
   }
 });
