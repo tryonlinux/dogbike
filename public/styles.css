@@ -91,7 +91,7 @@ canvas {
 .touch-controls {
   position: absolute;
   right: 18px;
-  bottom: 24px;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
   display: none;
   grid-template-columns: repeat(3, 34px);
   grid-template-rows: repeat(3, 34px);
@@ -107,7 +107,7 @@ canvas {
 .touch-actions {
   position: absolute;
   right: 18px;
-  bottom: 146px;
+  bottom: calc(146px + env(safe-area-inset-bottom, 0px));
   display: none;
   flex-direction: column;
   gap: 8px;

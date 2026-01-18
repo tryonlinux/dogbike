@@ -13,6 +13,8 @@ const touchState = {
   active: false,
   x: 0,
   y: 0,
+  offsetX: 0,
+  offsetY: 0,
 };
 
 const dogThemes = [
@@ -903,15 +905,40 @@ function setTouchMode() {
 
 function setTouchTarget(event) {
   const rect = canvas.getBoundingClientRect();
-  touchState.x = event.clientX - rect.left;
-  touchState.y = event.clientY - rect.top;
+  touchState.x = event.clientX - rect.left - touchState.offsetX;
+  touchState.y = event.clientY - rect.top - touchState.offsetY;
+}
+
+function getPlayerBounds(scale = 1) {
+  const drawWidth = player.width * 2.8 * player.scale * scaleState.entity * scale;
+  const drawHeight = player.height * 2.1 * player.scale * scaleState.entity * scale;
+  return {
+    x: player.x - drawWidth / 2,
+    y: player.y - drawHeight / 2,
+    w: drawWidth,
+    h: drawHeight,
+  };
 }
 
 canvas.addEventListener("pointerdown", (event) => {
   if (!document.body.classList.contains("touch")) {
     return;
   }
+  const rect = canvas.getBoundingClientRect();
+  const pointerX = event.clientX - rect.left;
+  const pointerY = event.clientY - rect.top;
+  const hitbox = getPlayerBounds(0.9);
+  const onBike =
+    pointerX >= hitbox.x &&
+    pointerX <= hitbox.x + hitbox.w &&
+    pointerY >= hitbox.y &&
+    pointerY <= hitbox.y + hitbox.h;
+  if (!onBike) {
+    return;
+  }
   touchState.active = true;
+  touchState.offsetX = pointerX - player.x;
+  touchState.offsetY = pointerY - player.y;
   setTouchTarget(event);
   canvas.setPointerCapture(event.pointerId);
   ensureAudio();
@@ -927,6 +954,8 @@ canvas.addEventListener("pointermove", (event) => {
 canvas.addEventListener("pointerup", (event) => {
   if (touchState.active) {
     touchState.active = false;
+    touchState.offsetX = 0;
+    touchState.offsetY = 0;
     canvas.releasePointerCapture(event.pointerId);
   }
 });
