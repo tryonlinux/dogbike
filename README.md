@@ -6,6 +6,8 @@ I was describing my job as a Software Engineer to my 5‑year‑old the other da
 
 Simple scrolling browser game where you dodge dogs, cats, and chickens on a bike.
 
+Play at https://dogbike.tryonlinux.com
+
 ## Run locally
 
 Open `index.html` in a browser, or serve the folder:
